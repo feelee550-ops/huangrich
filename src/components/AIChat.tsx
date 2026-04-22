@@ -18,19 +18,19 @@ export default function AIChat({ isOpen, onClose }: AIChatProps) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 bg-stone-900/60 backdrop-blur-sm flex items-end sm:items-center justify-center p-4"
+          className="fixed inset-0 z-50 bg-stone-900/60 backdrop-blur-sm flex items-end justify-center"
           onClick={onClose}
         >
           <motion.div
-            initial={{ y: '100%', opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: '100%', opacity: 0 }}
+            initial={{ y: '100%' }}
+            animate={{ y: 0 }}
+            exit={{ y: '100%' }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="bg-white w-full max-w-2xl h-[85vh] sm:h-[750px] rounded-t-[3rem] sm:rounded-[3rem] flex flex-col shadow-2xl overflow-hidden"
+            className="bg-white w-full max-w-md h-[85vh] rounded-t-[3rem] flex flex-col shadow-2xl overflow-hidden"
             onClick={e => e.stopPropagation()}
           >
             {/* Header */}
-            <div className="p-5 border-b border-stone-100 flex items-center justify-between bg-white sticky top-0 z-10">
+            <div className="p-5 border-b border-stone-100 flex items-center justify-between bg-white relative z-10">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-2xl bg-indigo-50 flex items-center justify-center text-indigo-500">
                   <Sparkles size={20} />
@@ -49,7 +49,7 @@ export default function AIChat({ isOpen, onClose }: AIChatProps) {
             </div>
 
             {/* Chat Iframe Content */}
-            <div className="flex-1 w-full relative bg-stone-50">
+            <div className="flex-1 w-full relative bg-white">
                <iframe
                 src="https://udify.app/chatbot/fBkYm7bRyFgaHviR"
                 className="w-full h-full border-none"
