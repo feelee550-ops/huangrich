@@ -46,7 +46,7 @@ export default function App() {
             <p className="text-stone-400 font-light">未来28天的身体天气预报</p>
           </div>
           
-          <div className="grid grid-cols-7 gap-1">
+          <div className="grid grid-cols-7 gap-1.5">
             {Array.from({ length: userCycle.cycleLength }).map((_, i) => {
               const dayNum = i + 1;
               const phaseId = getPhaseFromDay(dayNum);
@@ -58,14 +58,17 @@ export default function App() {
                   key={i}
                   whileHover={{ scale: 1.05 }}
                   className={`aspect-square rounded-2xl flex flex-col items-center justify-center relative border transition-all ${
-                    isToday ? 'border-stone-900 shadow-xl z-10' : 'border-stone-50'
+                    isToday ? 'border-stone-900 shadow-xl z-10 scale-105' : 'border-transparent'
                   }`}
-                  style={{ backgroundColor: `${phase.color}15` }}
+                  style={{ 
+                    backgroundColor: isToday ? '#fff' : `${phase.color}25`,
+                    borderColor: isToday ? 'var(--color-ink)' : 'transparent'
+                  }}
                 >
-                  <span className={`text-[10px] font-bold ${isToday ? 'text-stone-900' : 'text-stone-300'}`}>
-                    {dayNum}天
+                  <span className={`text-[10px] font-bold ${isToday ? 'text-stone-900' : 'text-stone-400'}`}>
+                    {dayNum}
                   </span>
-                  <span className="text-sm mt-0.5">{phase.weather.split(' ')[0]}</span>
+                  <span className="text-lg">{phase.weather.split(' ')[0]}</span>
                   {isToday && (
                     <motion.div
                       layoutId="today-indicator"
@@ -77,17 +80,17 @@ export default function App() {
             })}
           </div>
 
-          <div className="p-6 rounded-[2rem] bg-stone-50 space-y-4">
-            <div className="flex items-center justify-between text-xs font-bold uppercase tracking-widest text-stone-400">
-              <span>图例指南</span>
+          <div className="p-6 rounded-[2rem] bg-stone-50/50 border border-stone-100 space-y-4">
+            <div className="flex items-center justify-between text-[10px] font-black uppercase tracking-widest text-stone-400">
+              <span>周期说明</span>
             </div>
             <div className="grid grid-cols-2 gap-4">
-              {['MENSTRUAL', 'FOLLICULAR', 'OVULATORY', 'LUTEAL'].map((id) => {
-                const p = getPhaseInfo(id as CyclePhase);
+              {(['MENSTRUAL', 'FOLLICULAR', 'OVULATORY', 'LUTEAL'] as CyclePhase[]).map((id) => {
+                const p = getPhaseInfo(id);
                 return (
                   <div key={id} className="flex items-center gap-2">
-                    <div className="w-2 h-2 rounded-full" style={{ backgroundColor: p.color }} />
-                    <span className="text-stone-500 text-xs">{p.name}</span>
+                    <div className="w-3 h-3 rounded-full" style={{ backgroundColor: p.color }} />
+                    <span className="text-stone-500 text-xs font-medium">{p.name}</span>
                   </div>
                 );
               })}
@@ -97,7 +100,11 @@ export default function App() {
       )}
 
       {activeTab === 'mood' && (
-        <MoodPicker onSelect={setSelectedMood} selectedMoodId={selectedMood} />
+        <MoodPicker 
+          onSelect={setSelectedMood} 
+          selectedMoodId={selectedMood} 
+          currentPhase={currentPhase} 
+        />
       )}
 
       {activeTab === 'profile' && (
