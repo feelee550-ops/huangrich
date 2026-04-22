@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", serif;
+
+  /* Cycle Phase Colors */
+  --color-phase-menstrual: #8B5CF6; /* Purple */
+  --color-phase-follicular: #FBBF24; /* Gold */
+  --color-phase-ovulatory: #EF4444; /* Red/Vitality */
+  --color-phase-luteal: #10B981; /* Sage/Green */
+  --color-warm-bg: #FDFCFB;
+  --color-ink: #1C1917;
+}
+
+@layer base {
+  body {
+    @apply bg-[var(--color-warm-bg)] text-[var(--color-ink)] font-sans antialiased;
+  }
+}
+
+.phase-card-shadow {
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+}
+
+.glass-morphism {
+  @apply bg-white/70 backdrop-blur-md border border-white/20;
+}

@@ -1,0 +1,9 @@
+{
+  "name": "Remix: Remix: 汐月 / Tidal",
+  "description": "基于女性内分泌节律的荷尔蒙同步节律系统。同步你的饮食、运动与情绪，与身体和解。",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "Health Tracking",
+    "Personalized Recommendations"
+  ]
+}
